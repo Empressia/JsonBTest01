@@ -1,0 +1,29 @@
+plugins {
+	id "java";
+}
+
+repositories {
+	jcenter();
+}
+
+dependencies {
+	// use JsonB.
+	testImplementation group:"javax.json.bind", name:"javax.json.bind-api", version:"1.0";
+	// use yasson.
+	testImplementation group:"org.eclipse", name:"yasson", version:"1.0.4";
+
+	// use JUnit test framework.
+	testImplementation "org.hamcrest:hamcrest:2.2";
+	testImplementation "org.junit.jupiter:junit-jupiter-api:5.5.2";
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.5.2";
+
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding "UTF-8";
+	options.compilerArgs << "-parameters";
+}
+
+test {
+	useJUnitPlatform();
+}
